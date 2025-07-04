@@ -1,17 +1,19 @@
-# Use official OpenJDK image with JDK 17
+# Use official JDK 17 base image
 FROM eclipse-temurin:17-jdk
 
-# Set the working directory in the container
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy Gradle wrapper and project files
+# Copy Gradle wrapper scripts and set execute permission
+COPY gradlew .
+COPY gradle gradle
+RUN chmod +x gradlew
+
+# Copy the rest of the project files
 COPY . .
 
-# Give gradlew permission to execute
-RUN chmod +x ./gradlew
+# Build the Spring Boot project
+RUN ./gradlew build --no-daemon --stacktrace --info
 
-# Build the application
-RUN ./gradlew build --no-daemon
-
-# Use the fat jar generated in build/libs
+# Start the application using the generated jar
 CMD ["java", "-jar", "build/libs/demo-0.0.1-SNAPSHOT.jar"]
