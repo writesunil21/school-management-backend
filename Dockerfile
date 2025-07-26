@@ -1,5 +1,6 @@
 # Use official JDK 17 base image
-#FROM eclipse-temurin:17-jdk
+#
+FROM eclipse-temurin:17-jdk
 FROM gradle:8.4.0-jdk17 as builder
 
 
