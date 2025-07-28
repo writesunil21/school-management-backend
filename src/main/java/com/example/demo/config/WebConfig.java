@@ -13,7 +13,12 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://school-management-nehib5xw5-writesunil21s-projects.vercel.app", "http://localhost:3000")  // ✅ Replace with your actual frontend URL
+                        .allowedOrigins(
+                                "http://localhost:3000",
+                                "https://school-management-hy1ad6o93-writesunil21s-projects.vercel.app",
+                                "https://school-management-app-ivory-eight.vercel.app",
+                                "https://school-management.vercel.app"
+                        )
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
